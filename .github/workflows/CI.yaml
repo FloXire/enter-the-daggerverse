@@ -24,7 +24,8 @@ jobs:
         uses: dagger/dagger-for-github@v6
         with:
           version: "latest"
-          args: -m go functions
+          verb: functions
+          args: -m go
           workdir: hello
       - name: Call Dagger Function to build-env
         uses: dagger/dagger-for-github@v6

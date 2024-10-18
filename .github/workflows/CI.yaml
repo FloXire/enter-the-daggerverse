@@ -14,3 +14,31 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Init dagger
+        uses: dagger/dagger-for-github@v6
+        with:
+          version: "latest"
+          verb: develop
+      - name: Test is installed
+        uses: dagger/dagger-for-github@v6
+        with:
+          version: "latest"
+          args: -m go functions
+      - name: Call Dagger Function to build-env
+        uses: dagger/dagger-for-github@v6
+        with:
+          version: "latest"
+          verb: call
+          args: build-env
+      - name: Call Dagger Function to build-env
+        uses: dagger/dagger-for-github@v6
+        with:
+          version: "latest"
+          verb: call
+          args: build --source=.
+      - name: Call Dagger Function to publish
+        uses: dagger/dagger-for-github@v6
+        with:
+          version: "latest"
+          verb: publish
+          args: --source=.
